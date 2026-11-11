@@ -366,3 +366,24 @@ body:has(.subpage-main){background:#fff;}
 .kw-pillar-icon{transition:transform 250ms ease-out}
 .kw-pillar:hover .kw-pillar-icon,.kw-pillar:focus-within .kw-pillar-icon{transform:scale(1.05)}
 @media(prefers-reduced-motion:reduce){.kw-pillar,.kw-pillar-icon{transition:none}.kw-pillar:hover,.kw-pillar:focus-within,.kw-pillar:hover .kw-pillar-icon,.kw-pillar:focus-within .kw-pillar-icon{transform:none}}
+
+/* Donate button #6: SVG heart fills subtly on hover/focus. */
+.header-donate .donate-heart {
+  display:block;
+  flex:0 0 20px;
+  width:20px;
+  height:20px;
+  fill:transparent;
+  stroke:#c62828;
+  stroke-width:2;
+  stroke-linejoin:round;
+  transition:fill 300ms ease, transform 300ms ease;
+}
+.header-donate:hover .donate-heart,
+.header-donate:focus-visible .donate-heart {
+  fill:#c62828;
+  transform:scale(1.12);
+}
+@media (prefers-reduced-motion:reduce) {
+  .header-donate .donate-heart { transition:none; }
+}
