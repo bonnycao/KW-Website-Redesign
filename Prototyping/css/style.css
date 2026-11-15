@@ -387,3 +387,19 @@ body:has(.subpage-main){background:#fff;}
 @media (prefers-reduced-motion:reduce) {
   .header-donate .donate-heart { transition:none; }
 }
+
+/* Donate Sample 3: thin gray ring and red particles, centered on heart. */
+.header-donate .kw-heart-burst-origin{position:relative;display:inline-grid;place-items:center;flex:0 0 20px;width:20px;height:20px;isolation:isolate;overflow:visible;}
+.header-donate .kw-heart-burst-origin .donate-heart{position:relative;z-index:2;}
+.header-donate .kw-heart-ring{position:absolute;left:50%;top:50%;width:17px;height:17px;border:1.5px solid rgba(150,150,150,.35);border-radius:50%;box-sizing:border-box;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.35);}
+.header-donate .kw-heart-dot{position:absolute;left:50%;top:50%;width:4px;height:4px;margin-left:-2px;margin-top:-2px;border-radius:50%;background:#d62828;opacity:0;pointer-events:none;transform:translate(0,0) scale(.6);}
+.header-donate .kw-heart-burst-origin.kw-burst .kw-heart-ring{animation:kw-donate-ring .65s ease-out both;}
+.header-donate .kw-heart-burst-origin.kw-burst .kw-heart-dot{animation:kw-donate-dot .65s cubic-bezier(.2,.65,.3,1) both;}
+@keyframes kw-donate-ring{0%{opacity:1;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(3.5)}}
+@keyframes kw-donate-dot{0%{opacity:0;transform:translate(0,0) scale(.6)}18%{opacity:1}100%{opacity:0;transform:translate(var(--kw-dx),var(--kw-dy)) scale(.2)}}
+.header-donate:focus-visible{outline:3px solid #066a71;outline-offset:4px;}
+@media(prefers-reduced-motion:reduce){
+  .header-donate .donate-heart{transition:none!important;}
+  .header-donate:hover .donate-heart,.header-donate:focus-visible .donate-heart{transform:none;}
+  .header-donate .kw-heart-burst-origin.kw-burst .kw-heart-ring,.header-donate .kw-heart-burst-origin.kw-burst .kw-heart-dot{animation:none!important;}
+}
