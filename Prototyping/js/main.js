@@ -26,3 +26,34 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeDropdo
   update();
   button.addEventListener('click',()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
 })();
+
+// Donate Sample 3: decorative heart-centered burst; existing external links navigate normally.
+(()=>{
+  const points=[[0,-34],[23,-25],[35,0],[24,25],[0,35],[-24,25],[-35,0],[-23,-25]];
+  document.querySelectorAll('a.header-donate').forEach(link=>{
+    const heart=link.querySelector('svg.donate-heart');
+    if(!heart||heart.closest('.kw-heart-burst-origin'))return;
+    const origin=document.createElement('span');
+    origin.className='kw-heart-burst-origin';
+    origin.setAttribute('aria-hidden','true');
+    heart.before(origin);
+    origin.appendChild(heart);
+    const ring=document.createElement('span');ring.className='kw-heart-ring';origin.prepend(ring);
+    points.forEach(([x,y])=>{
+      const dot=document.createElement('span');dot.className='kw-heart-dot';
+      dot.style.setProperty('--kw-dx',x+'px');dot.style.setProperty('--kw-dy',y+'px');
+      origin.appendChild(dot);
+    });
+    const playBurst=()=>{
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      origin.classList.remove('kw-burst');
+      void origin.offsetWidth;
+      origin.classList.add('kw-burst');
+    };
+    const resetBurst=()=>origin.classList.remove('kw-burst');
+    link.addEventListener('pointerenter',playBurst);
+    link.addEventListener('pointerleave',resetBurst);
+    link.addEventListener('focus',playBurst);
+    link.addEventListener('blur',resetBurst);
+  });
+})();
